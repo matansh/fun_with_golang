@@ -15,7 +15,9 @@ sometimes as a tread object, perhaps a process context and such.
 What is unique about the approach golang has opted for is that it is an explicit, non global solution \
 Which some would say aligns perfectly with golang's communities general aversion for implicitly and global vars.
 
-Meaning that we (yes you) need to pass the context around.
+Meaning that we (yes you) need to pass the context around and check its state. \
+Simply canceling a context does nothing unless you explicitly handle the cancellation, \
+**There is no magic mechanism that will stop your execution on context cancellation**
 
 ## Usage
 ### Creating a context
@@ -32,6 +34,19 @@ A child context can also be set to auto cancel within a specific time-frame or a
 // both will cancel in 10 seconds
 context.WithTimeout(ctx, 10 * time.Second)
 context.WithDeadline(ctx, time.Now().Add(10 * time.Second))
+```
+
+### Using the key value store
+Note: context values should be used sparingly and only for contextual info like a requests tracking id
+#### Writing
+```go
+parentCtx := context.Background()
+childCtx = context.WithValue(ctx, "k", "v")
+// parentCtx does not have key "k"
+```
+#### Reading
+```go
+value := ctx.Value("k")
 ```
 
 ### Checking a contexts state
