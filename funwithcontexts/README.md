@@ -25,7 +25,7 @@ Creating a new context from scratch is as simple as
 ```go
 ctx := context.Background()
 ```
-From the context we just create we can create a cancelable child context
+From the context we just created we can create a cancelable child context
 ```go
 childCtx, cancel := context.WithCancel(ctx)
 ```
