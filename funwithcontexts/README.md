@@ -3,7 +3,7 @@ yay!
 
 ## Some context about contexts
 So, what are contexts? \
-Contexts wear a couple of different hats, and can be used to accomplish quite a lot of things \
+Contexts wear a couple of different hats, and can be used to accomplish quite a lot of things
 - A context is a key-value storage that propagates throughout the applications method execution stack
 - A context is a lifecycle control mechanism
 - A context is a high level synchronization mechanism
